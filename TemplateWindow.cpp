@@ -46,68 +46,16 @@ BOOL TemplateWindowHandleCommandMessage( WPARAM wParam, LPARAM, void( *lpDoubleC
 	// Select template window notification code
 	switch( HIWORD( wParam ) )
 	{
-		case LBN_DBLCLK:
+		default:
 		{
-			// A template window double click notification code
-			int nSelectedItem;
+			// Default notification code
 
-			// Allocate string memory
-			LPTSTR lpszSelectedItemText = new char[ STRING_LENGTH ];
-
-			// Get selected item
-			nSelectedItem = TemplateWindowGetCurrentSelection();
-
-			// Get selected item text
-			if( TemplateWindowGetItemText( nSelectedItem, lpszSelectedItemText ) )
-			{
-				// Successfully got selected item text
-
-				// Call double click function
-				( *lpDoubleClickFunction )( lpszSelectedItemText );
-
-				// Update return value
-				bResult = TRUE;
-
-			} // End of successfully got selected item text
-
-			// Free string memory
-			delete [] lpszSelectedItemText;
+			// No need to do anything here, just continue with default result
 
 			// Break out of switch
 			break;
 
-		} // End of a template window double click notification code
-		case LBN_SELCHANGE:
-		{
-			// A template window selection change notification code
-			int nSelectedItem;
-
-			// Allocate string memory
-			LPTSTR lpszSelectedItemText = new char[ STRING_LENGTH ];
-
-			// Get selected item
-			nSelectedItem = TemplateWindowGetCurrentSelection();
-
-			// Get selected item text
-			if( TemplateWindowGetItemText( nSelectedItem, lpszSelectedItemText ) )
-			{
-				// Successfully got selected item text
-
-				// Call selection changed function
-				( *lpSelectionChangedFunction )( lpszSelectedItemText );
-
-				// Update return value
-				bResult = TRUE;
-
-			} // End of successfully got selected item text
-
-			// Free string memory
-			delete [] lpszSelectedItemText;
-
-			// Break out of switch
-			break;
-
-		} // End of a template window selection change notification code
+		} // End of default notification code
 
 	}; // End of selection for template window notification code
 
